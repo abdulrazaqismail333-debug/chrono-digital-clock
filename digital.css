@@ -1,0 +1,959 @@
+/* ==========================================
+   CHRONO DIGITAL CLOCK
+   Complete Responsive Stylesheet
+========================================== */
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #070b14;
+  --card: rgba(15, 23, 42, 0.88);
+  --card-inner: rgba(255, 255, 255, 0.025);
+  --text: #edf5ff;
+  --muted: #91a0b8;
+  --cyan: #00ffc8;
+  --cyan-dark: #00cba1;
+  --purple: #a78bfa;
+  --border: rgba(0, 255, 200, 0.18);
+  --shadow: rgba(0, 255, 200, 0.08);
+  --input-bg: #0b1220;
+}
+
+body.light-mode {
+  color-scheme: light;
+  --bg: #eef3fb;
+  --card: rgba(255, 255, 255, 0.92);
+  --card-inner: rgba(15, 23, 42, 0.025);
+  --text: #172033;
+  --muted: #64748b;
+  --cyan: #008f78;
+  --cyan-dark: #007560;
+  --purple: #7c3aed;
+  --border: rgba(0, 143, 120, 0.2);
+  --shadow: rgba(15, 23, 42, 0.06);
+  --input-bg: #ffffff;
+}
+
+/* ===== PAGE ===== */
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  padding: 35px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0, 255, 200, 0.09),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(124, 58, 237, 0.12),
+      transparent 32%
+    ),
+    var(--bg);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+::selection {
+  color: #06110e;
+  background: var(--cyan);
+}
+
+/* ===== MAIN CHRONO CARD ===== */
+.card {
+  width: 100%;
+  max-width: 760px;
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.25),
+    0 0 35px var(--shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* ===== TOP HEADER ===== */
+.clock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.brand-icon {
+  color: var(--cyan);
+  font-size: 32px;
+  line-height: 1;
+  text-shadow: 0 0 15px var(--shadow);
+}
+
+.brand-dot {
+  color: var(--cyan);
+}
+
+.live-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--cyan);
+  animation: chrono-pulse 1.8s infinite;
+}
+
+@keyframes chrono-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--cyan);
+  }
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 3px var(--cyan);
+  }
+}
+
+/* ===== MAIN DIGITAL CLOCK ===== */
+.clock-content {
+  padding: 42px 8px 30px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  line-height: 1.6;
+}
+
+#greeting {
+  margin: 22px 0 16px;
+  color: var(--text);
+  font-size: clamp(20px, 4vw, 27px);
+  font-weight: 600;
+}
+
+.clock-display {
+  width: 100%;
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+#clock {
+  color: var(--cyan);
+  font-size: clamp(44px, 10vw, 78px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-shadow:
+    0 0 12px rgba(0, 255, 200, 0.25),
+    0 0 35px rgba(0, 255, 200, 0.12);
+}
+
+#date {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+.clock-divider {
+  width: 52px;
+  height: 3px;
+  margin: 25px auto;
+  border-radius: 10px;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--shadow);
+}
+
+.timezone-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.timezone-icon {
+  color: var(--cyan);
+  font-size: 19px;
+}
+
+/* ===== 12 / 24-HOUR FORMAT BUTTON ===== */
+#format-toggle {
+  margin-top: 22px;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--card-inner);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#format-toggle:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+#format-toggle[aria-pressed="true"] {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+/* ===== COMMON TIMER SECTIONS ===== */
+.stopwatch,
+.alarm,
+.world-clock,
+.pomodoro,
+.countdown {
+  margin-top: 28px;
+  padding: 25px 20px;
+  text-align: center;
+  background: var(--card-inner);
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.stopwatch:hover,
+.alarm:hover,
+.world-clock:hover,
+.pomodoro:hover,
+.countdown:hover {
+  border-color: var(--cyan);
+}
+
+.stopwatch .clock-divider,
+.alarm .clock-divider,
+.world-clock .clock-divider,
+.pomodoro .clock-divider {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.stopwatch h2,
+.alarm h2,
+.world-clock h2,
+.pomodoro h2,
+.countdown h2 {
+  margin: 12px 0;
+  color: var(--text);
+  font-size: clamp(20px, 4vw, 25px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ===== SHARED BUTTON STYLES ===== */
+.stopwatch-controls,
+.alarm-controls,
+.pomodoro-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stopwatch-controls button,
+.alarm-controls button,
+.pomodoro-controls button {
+  min-width: 100px;
+  padding: 12px 20px;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  color: var(--text);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.stopwatch-controls button:hover,
+.alarm-controls button:hover,
+.pomodoro-controls button:hover {
+  color: #06110e;
+  background: var(--cyan);
+  box-shadow: 0 0 18px var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* ===== STOPWATCH ===== */
+#stopwatch-display {
+  margin: 25px 0;
+  color: var(--cyan);
+  font-size: clamp(38px, 8vw, 53px);
+  font-weight: 700;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 18px var(--shadow);
+}
+
+/* ===== COUNTDOWN TIMER ===== */
+.countdown-description {
+  margin: 8px 0 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.countdown-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.countdown-inputs label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.countdown-inputs input {
+  width: 100px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.countdown-inputs input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--shadow);
+}
+
+#countdown-display {
+  margin: 20px 0;
+  color: var(--cyan);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 3px;
+  text-shadow: 0 0 18px var(--shadow);
+}
+
+.countdown-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.countdown-controls button {
+  min-width: 100px;
+  padding: 12px 20px;
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  color: var(--text);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.countdown-controls button:hover {
+  color: var(--bg);
+  background: var(--cyan);
+  box-shadow: 0 0 18px var(--shadow);
+  transform: translateY(-2px);
+}
+
+.countdown-controls button:active {
+  transform: translateY(0);
+}
+
+#countdown-message {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* ===== ALARM CLOCK ===== */
+.alarm label {
+  display: block;
+  margin: 20px 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.alarm-input {
+  margin: 12px 0 20px;
+}
+
+#alarm-time {
+  width: min(100%, 230px);
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--input-bg);
+  font-size: 18px;
+  text-align: center;
+  color-scheme: inherit;
+}
+
+#alarm-time:focus {
+  border-color: var(--cyan);
+}
+
+#alarm-display {
+  margin: 22px 0;
+  color: var(--cyan);
+  font-size: clamp(18px, 4vw, 25px);
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+#alarm-message {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ===== WORLD CLOCK ===== */
+.world-clock h2 {
+  margin-top: 14px;
+  margin-bottom: 23px;
+}
+
+.world-clock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.world-clock-card {
+  min-width: 0;
+  padding: 20px 10px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card-inner);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.world-clock-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-3px);
+}
+
+.world-clock-card h3 {
+  margin-bottom: 16px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.world-time {
+  color: var(--cyan);
+  font-size: clamp(16px, 3vw, 23px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+#lagos-date,
+#london-date,
+#newyork-date {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* ===== POMODORO FOCUS TIMER ===== */
+.pomodoro-description {
+  margin: 8px 0 23px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.pomodoro-modes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.pomodoro-mode {
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  background: transparent;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.pomodoro-mode:hover {
+  border-color: var(--cyan);
+}
+
+.pomodoro-mode.active {
+  color: #06110e;
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px var(--shadow);
+}
+
+/* Animated Pomodoro progress ring */
+.pomodoro-circle {
+  --pomodoro-progress: 100%;
+  width: 225px;
+  height: 225px;
+  max-width: 100%;
+  margin: 28px auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--cyan) var(--pomodoro-progress),
+    var(--border) 0
+  );
+  box-shadow: 0 0 22px var(--shadow);
+}
+
+.pomodoro-circle::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--card);
+  box-shadow: inset 0 0 22px var(--shadow);
+}
+
+.pomodoro-circle > * {
+  position: relative;
+  z-index: 1;
+}
+
+#pomodoro-display {
+  margin: 0;
+  color: var(--cyan);
+  font-size: clamp(42px, 8vw, 55px);
+  font-weight: 800;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 18px var(--shadow);
+}
+
+#pomodoro-status {
+  max-width: 85%;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#pomodoro-message {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ===== LIGHT / DARK MODE BUTTON ===== */
+#theme-toggle {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  background: var(--card-inner);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#theme-toggle:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--shadow);
+}
+
+/* ===== FOOTER ===== */
+.clock-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 20px 3px 2px;
+  border-top: 1px solid var(--border);
+}
+
+.clock-footer p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.clock-footer span {
+  color: var(--cyan);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* ===== RESPONSIVE TABLET ===== */
+@media (max-width: 600px) {
+  body {
+    padding: 18px 10px;
+  }
+
+  .card {
+    padding: 20px 14px;
+    border-radius: 20px;
+  }
+
+  .clock-header {
+    padding-bottom: 18px;
+  }
+
+  .brand {
+    gap: 7px;
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  .brand-icon {
+    font-size: 27px;
+  }
+
+  .live-status {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .clock-content {
+    padding: 35px 0 25px;
+  }
+
+  #clock {
+    font-size: clamp(38px, 10vw, 58px);
+    letter-spacing: -1.5px;
+  }
+
+  #date {
+    font-size: 12px;
+  }
+
+  .stopwatch,
+  .alarm,
+  .world-clock,
+  .pomodoro,
+  .countdown {
+    margin-top: 20px;
+    padding: 22px 12px;
+    border-radius: 16px;
+  }
+
+  .world-clock-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .world-clock-card {
+    padding: 17px 12px;
+  }
+
+  .world-clock-card h3 {
+    margin-bottom: 10px;
+  }
+
+  .world-time {
+    font-size: 23px;
+  }
+
+  #lagos-date,
+  #london-date,
+  #newyork-date {
+    font-size: 11px;
+  }
+
+  .pomodoro-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .stopwatch-controls button,
+  .alarm-controls button,
+  .pomodoro-controls button {
+    min-width: 90px;
+    padding: 11px 15px;
+  }
+
+  .countdown {
+    padding: 22px 12px;
+  }
+}
+
+/* ===== RESPONSIVE SMALL PHONES ===== */
+@media (max-width: 360px) {
+  body {
+    padding: 10px 6px;
+  }
+
+  .card {
+    padding: 17px 10px;
+  }
+
+  .brand {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .brand-icon {
+    font-size: 24px;
+  }
+
+  .live-status {
+    gap: 5px;
+    padding: 6px 7px;
+    letter-spacing: 1px;
+  }
+
+  #clock {
+    font-size: 35px;
+    letter-spacing: -1px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .pomodoro-modes {
+    gap: 7px;
+  }
+
+  .pomodoro-mode {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .pomodoro-circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  #pomodoro-display {
+    font-size: 40px;
+  }
+
+  .clock-footer {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .countdown-inputs {
+    gap: 7px;
+  }
+
+  .countdown-inputs input {
+    width: 85px;
+    padding: 10px 6px;
+  }
+
+  .countdown-controls button {
+    min-width: 85px;
+    padding: 11px 14px;
+  }
+}
+
+/* ===== COUNTDOWN VERY SMALL PHONE INPUTS ===== */
+@media (max-width: 400px) {
+  .countdown {
+    padding: 20px 12px;
+  }
+
+  .countdown-inputs {
+    gap: 10px;
+  }
+
+  .countdown-inputs input {
+    width: 85px;
+  }
+}
+
+/* ===== REDUCED MOTION ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== END OF CHRONO CSS ===== */
+
+/* ===== CHRONO SMOOTH ANIMATIONS ===== */
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Gentle lift when hovering over buttons */
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Small press effect when clicking buttons */
+button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Smooth entrance for the main clock */
+.clock-content {
+  animation: chronoFadeIn 0.8s ease-out both;
+}
+
+/* Smooth entrance animation */
+@keyframes chronoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

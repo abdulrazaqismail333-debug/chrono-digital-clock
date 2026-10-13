@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A modern digital clock with live time, date, and useful time tools."
+    />
+
+    <title>Chrono | Digital Clock</title>
+    <link rel="stylesheet" href="digital.css" />
+  </head>
+  <body>
+    <main class="card">
+      <header class="clock-header">
+        <div class="brand">
+          <span class="brand-icon">◷</span>
+          <span>CHRONO<span class="brand-dot">.</span></span>
+        </div>
+
+        <div class="live-status">
+          <span class="status-dot"></span>
+          LIVE
+        </div>
+      </header>
+
+      <section class="clock-content" aria-label="Current time">
+        <p class="eyebrow">YOUR TIME, YOUR MOMENT</p>
+        <h2 id="greeting">Welcome</h2>
+
+        <div class="clock-display">
+          <h1 id="clock" aria-live="off">00:00:00 AM</h1>
+        </div>
+
+        <p id="date">Loading date...</p>
+
+        <div class="clock-divider"></div>
+
+        <p class="timezone-label">
+          <span class="timezone-icon">◎</span>
+          LOCAL TIME
+        </p>
+      </section>
+
+      <section class="stopwatch" aria-label="Stopwatch">
+        <div class="clock-divider"></div>
+        <p class="eyebrow">STOPWATCH</p>
+
+        <h2 id="stopwatch-display">00:00.00</h2>
+
+        <div class="stopwatch-controls">
+          <button id="stopwatch-start" type="button">Start</button>
+          <button id="stopwatch-reset" type="button">Reset</button>
+        </div>
+      </section>
+
+      <!-- ===== CHRONO COUNTDOWN TIMER ===== -->
+      <section class="countdown" aria-label="Countdown timer">
+        <div class="clock-divider"></div>
+
+        <p class="eyebrow">COUNTDOWN</p>
+        <h2>Countdown Timer ⏳</h2>
+        <p class="countdown-description">Set a time and count every second.</p>
+
+        <div class="countdown-inputs">
+          <label for="countdown-minutes">
+            Minutes
+            <input
+              id="countdown-minutes"
+              type="number"
+              min="0"
+              max="999"
+              value="5"
+              inputmode="numeric"
+            />
+          </label>
+
+          <label for="countdown-seconds">
+            Seconds
+            <input
+              id="countdown-seconds"
+              type="number"
+              min="0"
+              max="59"
+              value="0"
+              inputmode="numeric"
+            />
+          </label>
+        </div>
+
+        <p id="countdown-display" role="timer">05:00</p>
+
+        <div class="countdown-controls">
+          <button id="countdown-start" type="button">Start</button>
+          <button id="countdown-reset" type="button">Reset</button>
+        </div>
+
+        <p id="countdown-message" role="status" aria-live="polite">
+          Set your time and press Start.
+        </p>
+      </section>
+
+      <!-- ===== CHRONO ALARM CLOCK ===== -->
+      <section class="alarm" aria-label="Alarm clock">
+        <div class="clock-divider"></div>
+        <p class="eyebrow">ALARM CLOCK</p>
+
+        <label for="alarm-time">Set your alarm</label>
+
+        <div class="alarm-input">
+          <input id="alarm-time" type="time" required />
+        </div>
+
+        <p id="alarm-display">No alarm set</p>
+
+        <div class="alarm-controls">
+          <button id="alarm-set" type="button">Set Alarm</button>
+          <button id="alarm-stop" type="button">Stop Alarm</button>
+        </div>
+
+        <p id="alarm-message" role="status" aria-live="polite">
+          Choose a time for your alarm.
+        </p>
+
+        <audio id="alarm-sound" preload="auto" loop>
+          <source
+            src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+            type="audio/ogg"
+          />
+        </audio>
+      </section>
+
+      <!-- ===== CHRONO WORLD CLOCK ===== -->
+      <section class="world-clock" aria-label="World clock">
+        <div class="clock-divider"></div>
+        <p class="eyebrow">WORLD CLOCK</p>
+
+        <h2>Time Around the World 🌍</h2>
+
+        <div class="world-clock-grid">
+          <div class="world-clock-card">
+            <h3>Lagos 🇳🇬</h3>
+            <p class="world-time" id="lagos-time">--:--:--</p>
+            <p id="lagos-date">Loading date...</p>
+          </div>
+
+          <div class="world-clock-card">
+            <h3>London 🇬🇧</h3>
+            <p class="world-time" id="london-time">--:--:--</p>
+            <p id="london-date">Loading date...</p>
+          </div>
+
+          <div class="world-clock-card">
+            <h3>New York 🇺🇸</h3>
+            <p class="world-time" id="newyork-time">--:--:--</p>
+            <p id="newyork-date">Loading date...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CHRONO POMODORO FOCUS TIMER ===== -->
+      <section class="pomodoro" aria-label="Pomodoro focus timer">
+        <div class="clock-divider"></div>
+        <p class="eyebrow">FOCUS MODE</p>
+
+        <h2>Pomodoro Timer 🍅</h2>
+        <p class="pomodoro-description">
+          Focus on your goals, one session at a time.
+        </p>
+
+        <div class="pomodoro-modes">
+          <button
+            id="pomodoro-focus"
+            class="pomodoro-mode active"
+            type="button"
+          >
+            Focus · 25 min
+          </button>
+
+          <button id="pomodoro-break" class="pomodoro-mode" type="button">
+            Short Break · 5 min
+          </button>
+        </div>
+
+        <div class="pomodoro-circle">
+          <p id="pomodoro-display" role="timer" aria-live="off">25:00</p>
+          <span id="pomodoro-status">Ready to focus</span>
+        </div>
+
+        <div class="pomodoro-controls">
+          <button id="pomodoro-start" type="button">Start</button>
+          <button id="pomodoro-pause" type="button">Pause</button>
+          <button id="pomodoro-reset" type="button">Reset</button>
+        </div>
+
+        <p id="pomodoro-message" role="status" aria-live="polite">
+          Ready? Start your focus session!
+        </p>
+      </section>
+
+      <button id="theme-toggle" type="button" aria-label="Switch to light mode">
+        ☀️ Light Mode
+      </button>
+
+      <footer class="clock-footer">
+        <p>Make every second count.</p>
+        <span>CHRONO v2.0</span>
+      </footer>
+    </main>
+
+    <script src="digital.js"></script>
+  </body>
+</html>
